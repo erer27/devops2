@@ -56,5 +56,5 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_ed25519 ubuntu@43.201.18.201 << 'EOF'
           pkill -f 'java -jar' || true
-          nohup java -jar ~/app/devops-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
+          nohup java -jar ~/devops-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
         EOF
