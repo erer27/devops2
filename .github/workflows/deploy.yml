@@ -42,19 +42,19 @@ jobs:
 
     - name: Add known_hosts
       run: |
-        ssh-keyscan -t ed25519 본인aws서버공인IP >> ~/.ssh/known_hosts
+        ssh-keyscan -t ed25519 43.201.18.201 >> ~/.ssh/known_hosts
 
     #- name: 기존프로세스 종료
     #  run: |
     #    kill -9 $(ps -ef | grep devops | grep -v grep | head -n 1 | awk '{print $2}') || true
 
     - name: Deploy to Server
-      run: scp build/libs/*.jar ubuntu@52.78.230.87:~/app
+      run: scp build/libs/*.jar ubuntu@43.201.18.201:~/app
 
 
     - name: Run SSH commands
       run: |
-        ssh -i ~/.ssh/id_ed25519 ubuntu@52.78.230.87 << 'EOF'
+        ssh -i ~/.ssh/id_ed25519 ubuntu@43.201.18.201 << 'EOF'
           pkill -f 'java -jar' || true
           nohup java -jar ~/app/devops-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
         EOF
