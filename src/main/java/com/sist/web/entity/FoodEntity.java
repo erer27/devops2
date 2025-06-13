@@ -25,11 +25,10 @@ import lombok.Data;
 	PRICE         VARCHAR2(26)   
 	
  */
-@Entity(name="project_food")
+@Entity(name="cocktail_cicd")
 @Data
 public class FoodEntity {
    @Id
-   private int fno;
-   private String name,type,phone,address,theme,images,time,parking,content,price,poster;
-   private double score;
+   private int id;
+   private String name,image;
 }

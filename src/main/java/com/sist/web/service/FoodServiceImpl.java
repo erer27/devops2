@@ -14,15 +14,15 @@ public class FoodServiceImpl implements FoodService{
 	private FoodRepository fDao;
 
 	@Override
-	public List<FoodListVO> foodListData(int start,int end) {
+	public List<FoodEntity> foodListData(int start,int end) {
 		// TODO Auto-generated method stub
 		return fDao.foodListData(start, end);
 	}
 
 	@Override
-	public FoodEntity foodDetailData(int fno) {
+	public FoodEntity foodDetailData(int id) {
 		// TODO Auto-generated method stub
-		return fDao.findByFno(fno);
+		return fDao.findById(id);
 	}
 
 	@Override

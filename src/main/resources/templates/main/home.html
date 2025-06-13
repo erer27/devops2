@@ -25,8 +25,8 @@ p{
     <div class="row">
       <div class="col-md-3" th:each="vo:${list}">
         <div class="thumbnail">
-          <a th:href="@{/detail(fno=${vo.fno})}">
-            <img th:src="@{'https://www.menupan.com'+${vo.poster}}" style="width:230px;height: 130px">
+          <a th:href="@{/detail(fno=${vo.id})}">
+            <img th:src="@{${vo.image}}" style="width:230px;height: 130px">
             <div class="caption">
               <p th:text="${vo.name}"></p>
             </div>

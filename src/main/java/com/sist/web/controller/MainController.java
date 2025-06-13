@@ -27,7 +27,7 @@ public class MainController {
 	   int rowSize=12;
 	   int start=(rowSize*curpage)-(rowSize-1);
 	   int end=rowSize*curpage;
-	   List<FoodListVO> list=fService.foodListData(start, end);
+	   List<FoodEntity> list=fService.foodListData(start, end);
 	   int totalpage=fService.foodTotalPage();
 	   
 	   final int BLOCK=10;

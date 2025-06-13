@@ -8,8 +8,8 @@ import com.sist.web.vo.*;
 import com.sist.web.entity.*;
 // repository => 호출 
 public interface FoodService {
-	public List<FoodListVO> foodListData(int start,int end);
-	public FoodEntity foodDetailData(int fno);
+	public List<FoodEntity> foodListData(int start,int end);
+	public FoodEntity foodDetailData(int id);
 	public int foodTotalPage();
 	
 }
