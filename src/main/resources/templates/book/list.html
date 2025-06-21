@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<div class="breadcumb-area" style=
+	    "background-image: url(/img/banner.jpg);height:400px">
+	    <div class="container h-100">
+	        <div class="row h-100 align-items-center">
+	            <div class="col-12">
+	                <div class="bradcumb-title text-center">
+	                    <h2>Movie List</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="container h-100">
+	    <div class="row h-100 align-items-center align-justify-center">
+	        <div class="col-12">
+	            <div class="text-center p-5">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<section class="categories_area clearfix" id="about" style="margin:0px;padding:0px">
+	    <div class="container">
+	        <div class="row">
+
+				<div class="col-12 col-md-6 col-lg-3" th:each="vo:${list}">
+				    <div class="single_catagory wow fadeInUp" data-wow-delay=".3s">
+						<div style="height:400px">
+							<img th:src="${vo.poster}" alt=""
+							    style="border-radius: 0"
+							/>
+						</div>
+
+				        <div class="text-center" style="font-size:20px">
+				            [[${vo.title}]]
+				        </div>
+				    </div>
+				</div>
+	        </div>
+	    </div>
+
+		<div class="col-12 d-flex justify-content-center mt-3 mb-5">
+		    <div class="pagination-area mt-15 ">
+		        <nav aria-label="#">
+		            <ul class="pagination ">
+						<li class="page-item" th:if="${startPage>1}">
+							<a class="page-link" th:href="@{/book/list(page=${startPage-1})}">&laquo;</a>
+						</li>
+						<li th:class="'page-item ' + (${curpage==i}?'active':'')" th:each="i:${#numbers.sequence(startPage,endPage)}">
+							<a class="page-link" th:href="@{/book/list(page=${i})}" th:text="${i}"></a>
+						</li> 
+						<li class="page-item" th:if="${endPage<totalpage}">
+							<a class="page-link" th:href="@{/book/list(page=${endPage+1})}">&raquo;</a>
+						</li>
+		            </ul>
+		        </nav>
+		    </div>
+		</div>
+
+	</section>
+</body>
+</html>

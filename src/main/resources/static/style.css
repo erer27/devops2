@@ -1088,7 +1088,6 @@ li {
     content: '';
     top: 0;
     left: 0;
-    background-color: rgba(35, 45, 55, 0.7);
     z-index: -1;
 }
 
@@ -1139,7 +1138,7 @@ li {
 .pagination-area .pagination .page-link:focus,
 .pagination-area .pagination .page-link:hover {
     color: #fff;
-    background-color: #fc6c3f;
+    background-color: #6C9A50;
     border-color: transparent;
 }
 
