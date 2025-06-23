@@ -33,4 +33,10 @@ public class BookServiceImpl implements BookService{
 		return (int)(Math.ceil(count/12.0));
 	}
 
+	@Override
+	public BookEntity bookDetailData(int id) {
+		// TODO Auto-generated method stub
+		return bDao.findById(id);
+	}
+
 }

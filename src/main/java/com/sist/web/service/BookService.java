@@ -8,5 +8,6 @@ public interface BookService {
 	
 	List<BookEntity> bookMainData();
 	List<BookEntity> bookListData(int start, int end);
+	BookEntity bookDetailData(int id);
 	int bookTotalPage();
 }

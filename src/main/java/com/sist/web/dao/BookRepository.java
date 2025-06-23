@@ -21,4 +21,5 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer>{
    		 +"WHERE num BETWEEN :start AND :end",nativeQuery = true)
     List<BookEntity> bookListData(@Param("start") int start,@Param("end") int end);
 
+    public BookEntity findById(int id); // where => where fno=? => select *
 }

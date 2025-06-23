@@ -3,73 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<style type="text/css">
-.container{
-  margin-top: 50px;
-}
-.row{
-  margin: 0px auto;
-  width: 800px;
-}
-</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="row">
-      <table class="table">
-        <tr>
-          <td width="30%" class="text-center" rowspan="8">
-           <img th:src="@{'https://www.menupan.com'+${vo.poster}}" style="width: 240px;height: 200px">
-          </td>
-          <td colspan="2">
-            <h3>[[${vo.name}]]&nbsp;<span style="color:orange;" th:text="${vo.score}"></span></h3>
-          </td>
-        </tr>
-        <tr>
-          <th width="15%" class="text-center">주소</th>
-          <td width="55%">[[${vo.address}]]</td>
-        </tr>
-        <tr>
-          <th width="15%" class="text-center">전화</th>
-          <td width="55%">[[${vo.phone}]]</td>
-        </tr>
-        <tr>
-          <th width="15%" class="text-center">음식종류</th>
-          <td width="55%">[[${vo.type}]]</td>
-        </tr>
-        <tr>
-          <th width="15%" class="text-center">영업시간</th>
-          <td width="55%">[[${vo.time}]]</td>
-        </tr>
-        <tr>
-          <th width="15%" class="text-center">주차</th>
-          <td width="55%">[[${vo.parking}]]</td>
-        </tr>
-        <tr>
-          <th width="15%" class="text-center">가격대</th>
-          <td width="55%">[[${vo.price}]]</td>
-        </tr>
-        <tr>
-          <th width="15%" class="text-center">테마</th>
-          <td width="55%">[[${vo.theme}]]</td>
-        </tr>
-      </table>
-      <table class="table">
-        <tr>
-          <td>
-           [[${vo.content}]]
-          </td>
-        </tr>
-        <tr>
-          <td class="text-right">
-           <input type=button class="btn-sm btn-danger" onclick="javasctipt:history.back()"
-            value="목록"
-           >
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
+	<div class="breadcumb-area" style=
+	    "background-image: url(/img/banner.jpg);height:400px">
+	    <div class="container h-100">
+	        <div class="row h-100 align-items-center">
+	            <div class="col-12">
+	                <div class="bradcumb-title text-center">
+	                    <h2 class="pf">Book Detail</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<section class="archive-area section_padding_80">
+	    <div class="container p-0">
+	        <div class="row col-12 ">
+				<div class="col-4 ">
+				    <img th:src="${vo.poster}"></img>
+				</div>
+	            <div class="col-8 pl-5">
+	                <h1 style="font-size:30px;font-weight:500">
+	                    [[${vo.title}]]
+	                </h1>
+	                <div class="mt-5 ">
+	                    <div class="d-flex mb-2" style="font-size:18px" >
+	                        <span class="col-1 p-0" style="font-weight:500">저자</span>
+	                        <span class="col-11 p-0" style="width:80%">[[${vo.auth}]]</span>
+	                    </div>
+	                    <div class="d-flex mb-2" style="font-size:18px">
+	                        <span class="col-1 p-0" style="font-weight:500">출판사</span>
+	                        <span class="col-11 p-0">[[${vo.publisher}]]</span>
+	                    </div>
+	                    <div class="d-flex mb-2" style="font-size:18px">
+	                        <span class="col-1 p-0" style="font-weight:500">발행일</span>
+	                        <span class="col-11 p-0">[[${vo.release_date}]]</span>
+	                    </div>
+						<div class="d-flex mb-2 mt-5" style="font-size:25px">
+						    <span class="col-1 p-0" style="font-weight:500">가격</span>
+						    <span class="col-11 p-0">[[${vo.price}]]</span>
+						</div>
+	                </div>
+
+	            </div>
+
+	        </div>
+	        <div class="row col-12 bg-secondary mb-5 mt-3">
+
+	        </div>
+	        <div class="row col-12" th:utext="${vo.introduce}" style="font-size:15px;color:#6e6e6e">
+	            
+	        </div>
+	        <div class="row col-12 p-0 mt-5" style="display:flex;justify-content:flex-end">
+	                <button class="wood-button" style="font-size:15px">목록</button>
+	        </div>
+	    </div>
+	</section>
 </body>
 </html>

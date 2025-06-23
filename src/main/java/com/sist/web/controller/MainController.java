@@ -48,7 +48,6 @@ public class MainController {
 		   if(endPage>totalpage)
 			   endPage=totalpage;
 		   
-		   System.out.println(curpage+"sdfafasfsdfsdf");
 		   
 		   model.addAttribute("list", list);
 		   model.addAttribute("curpage", curpage);
@@ -59,4 +58,13 @@ public class MainController {
 		model.addAttribute("main_html", "book/list");
 		return "main";
 	}
+	
+	   @GetMapping("/book/detail")
+	   public String food_detail(@RequestParam("id") int id,Model model)
+	   {
+		   BookEntity vo=bService.bookDetailData(id);
+		   model.addAttribute("vo", vo);
+		   model.addAttribute("main_html", "book/detail");
+		   return "main";
+	   }
 }

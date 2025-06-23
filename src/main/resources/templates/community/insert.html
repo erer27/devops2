@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="breadcumb-area" style=
+	    "background-image: url(/img/banner.jpg);height:400px">
+	    <div class="container h-100">
+	        <div class="row h-100 align-items-center">
+	            <div class="col-12">
+	                <div class="bradcumb-title text-center">
+	                    <h2>Community</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+  <div class="container">
+    <div class="row">
+     <form method="post" action="/community/insert_ok">
+     <table class="table mt-5" style="font-size:20px">
+      <tbody>
+        <tr style="border:none">
+         <th class="text-center" width="20%" style="border:none">이름</th>
+         <td width=80% style="border:none">
+          <input type=text name=name class="input-sm" size=20>
+         </td>
+        </tr>
+        <tr>
+         <th class="text-center" width="20%">제목</th>
+         <td width=80%>
+          <input type=text name=subject class="input-sm" size=50>
+         </td>
+        </tr>
+        <tr>
+         <th class="text-center" width="20%">내용</th>
+         <td width=80%>
+          <textarea rows="10" cols="50" name="content"></textarea>
+         </td>
+        </tr>
+        
+        <tr>
+         <th class="text-center" width="20%">비밀번호</th>
+         <td width=80%>
+          <input type=password name=pwd class="input-sm" size=15>
+         </td>
+        </tr>
+        <tr>
+         <td colspan="2" class="text-center">
+           <input type=submit value="글쓰기" class="wood-button">
+           <input type=button value=취소 class="wood-button"
+            onclick="javascript:history.back()">
+         </td>
+        </tr>
+      </tbody>
+     </table>
+     </form>
+    </div>
+  </div>
+</body>
+</html>

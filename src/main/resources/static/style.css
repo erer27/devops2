@@ -1486,3 +1486,30 @@ li {
 	color: #fff;
 	cursor: pointer;
 }
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+  .wood-button {
+    font-family: 'Playfair Display', serif;
+    padding: 8px 15px;
+    font-size: 18px;
+    color: #fefae0;
+    background: linear-gradient(145deg, #6f4e37, #4e342e);
+    border: 2px solid #3e2723;
+    border-radius: 12px;
+    box-shadow: inset 0 0 5px #3e2723, 0 4px 6px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  }
+
+  .wood-button:hover {
+    background: linear-gradient(145deg, #5d3a1a, #3e2723);
+    box-shadow: inset 0 0 10px #3e2723, 0 6px 10px rgba(0,0,0,0.5);
+    transform: scale(1.03);
+  }
+  
+  .pf {
+	font-family: 'Playfair Display', serif;
+  }

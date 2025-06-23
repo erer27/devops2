@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</style>
+</head>
+<body>
+	<div class="breadcumb-area" style=
+	    "background-image: url(/img/banner.jpg);height:400px">
+	    <div class="container h-100">
+	        <div class="row h-100 align-items-center">
+	            <div class="col-12">
+	                <div class="bradcumb-title text-center">
+	                    <h2>Community</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+  <div class="container mt-5">
+   <div class="row">
+    <table class="table" style="font-size:20px">
+      <tr>
+       <th width=20% class="text-center">번호</th>
+       <td width=30% class="text-center" th:text="${vo.no}"></td>
+       <th width=20% class="text-center">작성일</th>
+       <td width=30% class="text-center" th:text="${vo.regdate}"></td>
+      </tr>
+      <tr>
+       <th width=20% class="text-center">이름</th>
+       <td width=30% class="text-center" th:text="${vo.name}"></td>
+       <th width=20% class="text-center">조회수</th>
+       <td width=30% class="text-center" th:text="${vo.hit}"></td>
+      </tr>
+      <tr>
+        <th width=20% class="text-center">제목</th>
+        <td colspan="3" th:text="${vo.subject}"></td>
+      </tr>
+      <tr>
+        <td colspan="4" class="text-left" valign="top" height="200">
+         <pre style="white-space: pre-wrap;background-color: white;border: none" 
+          th:text="${vo.content}"></pre>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="text-right">
+         <a th:href="@{/update(no=${vo.no})}" class="btn btn-xs btn-danger wood-button">수정</a>
+         <a th:href="@{/delete(no=${vo.no})}" class="btn btn-xs btn-warning wood-button">삭제</a>
+         <a href="/community/list" class="btn btn-xs btn-success wood-button">목록</a>
+        </td>
+      </tr>
+    </table>
+   </div>
+  </div>
+</body>
+</html>
