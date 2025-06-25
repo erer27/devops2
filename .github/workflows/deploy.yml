@@ -47,9 +47,9 @@ jobs:
       - name: Add known hosts
         run: ssh-keyscan -t ed25519 3.34.130.142 >> ~/.ssh/known_hosts
 
-      - name: Copy Docker image to server
+      - name: Copy Docker image to server (debug)
         run: |
-          scp spring-app.tar ubuntu@3.34.130.142:~/spring-app.tar
+          scp -v -o StrictHostKeyChecking=no spring-app.tar ubuntu@3.34.130.142:~/spring-app.tar
 
       - name: Load and run Docker image on server
         run: |
