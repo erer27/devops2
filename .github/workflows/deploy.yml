@@ -1,63 +1,61 @@
-name: Deploy to Ubuntu Server
+name: Deploy with Docker to Ubuntu Server
 
 on:
   push:
     branches:
-      - master  # main 브랜치에 푸시될 때 트리거
+      - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # 코드 체크아웃
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    # JDK 17 설정
-    - name: Set up JDK 17
-      uses: actions/setup-java@v1
-      with:
-        java-version: '17'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-    # gradlew 권한 설정
-    - name: Set gradlew permissions
-      run: |
-        chmod +x ./gradlew
+      - name: Set gradlew permissions
+        run: chmod +x ./gradlew
 
-    # gradle 빌드
-    - name: Build with Gradle
-      run: ./gradlew build
+      - name: Build with Gradle
+        run: ./gradlew clean build
 
-    - name: Set SSH key permissions
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_ed25519
-        chmod 600 ~/.ssh/id_ed25519
+      - name: Build Docker image
+        run: |
+          docker build -t spring-app:latest .
 
-    - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
+      - name: Save Docker image to tar
+        run: |
+          docker save -o spring-app.tar spring-app:latest
 
-    - name: Add known_hosts
-      run: |
-        ssh-keyscan -t ed25519 43.201.18.201 >> ~/.ssh/known_hosts
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
 
-    #- name: 기존프로세스 종료
-    #  run: |
-    #    kill -9 $(ps -ef | grep devops | grep -v grep | head -n 1 | awk '{print $2}') || true
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
 
-    - name: Deploy with rsync
-      run: |
-        timeout 60s rsync -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" \
-          -avz build/libs/*.jar ubuntu@43.201.18.201:~/app
+      - name: Add known hosts
+        run: ssh-keyscan -t ed25519 3.34.130.142 >> ~/.ssh/known_hosts
 
+      - name: Copy Docker image to server
+        run: |
+          scp spring-app.tar ubuntu@3.34.130.142:~/spring-app.tar
 
-
-    - name: Run SSH commands
-      run: |
-        ssh -i ~/.ssh/id_ed25519 ubuntu@43.201.18.201 << 'EOF'
-          pkill -f 'java -jar' || true
-          nohup java -jar ~/app/devops2-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
-        EOF
+      - name: Load and run Docker image on server
+        run: |
+          ssh ubuntu@3.34.130.142 << 'EOF'
+            docker stop spring-app || true
+            docker rm spring-app || true
+            docker load -i spring-app.tar
+            docker run -d --name spring-app -p 8080:8080 spring-app:latest
+          EOF
